@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h1>app</h1>
     <Topo />
     <Conteudo></Conteudo>
   </div>
