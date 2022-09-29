@@ -1,8 +1,17 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-  <h1>conteudo</h1>
-  <Home></Home>
-  <PublicarVaga></PublicarVaga>
+  <div>
+    <h1>{{ titulo }}</h1>
+    <button @click="atualizarComponente()">Atualizar</button>
+    <button @click="conteudo = 'home'">Home</button>
+    <button @click="conteudo = 'publicar-vaga'">Publicar Vaga</button>
+    <!-- renderizar de modo dinâmico os componentes home e publicar-vaga -->
+    <!--<home></home>-->
+    <!--<publicar-vaga></publicar-vaga>-->
+    <keep-alive>
+      <component :is="conteudo" />
+    </keep-alive>
+  </div>
 </template>
 
 <script>
@@ -16,5 +25,10 @@ export default {
     Home,
     PublicarVaga,
   },
+  data: () => ({
+    teste: 'O componente foi criado',
+    titulo: 'Componente Conteudo',
+    conteudo: 'home',
+  }),
 };
 </script>

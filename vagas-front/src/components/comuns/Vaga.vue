@@ -1,20 +1,52 @@
 <template>
   <div class="card">
-    <div class="card-header bg-dark text-white">Título da vaga</div>
+    <div class="card-header bg-dark text-white">{{ titulo }}</div>
     <div class="card-body">
-      <p>Descricao truncada da vaga...</p>
-      <div class="card-footer">
-        <small class="text-muted">Salario: R$ 60.000</small>
-      </div>
+      <p>{{ descricao }}</p>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted"
+        >Salário: R$ {{ salario }} | Modalidade: {{ modalidade }} | Tipo:
+        {{ tipo }} | Publicação: {{ publicacao }}</small
+      >
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'BaseVaga',
-  props: {},
+  name: 'VagaComponent',
+  //props: ['tituloVagaTeste', 'descricaoVaga', 'salario', 'modalidade', 'tipo', 'publicacao'],
+  props: {
+    titulo: {
+      type: String,
+      required: true,
+      validator(p) {
+        //console.log('Prop: ', p, )
+        if (p.length < 6) return false; //se estiver inválido
+        return true; //se estiver válido
+      },
+    },
+    descricao: {
+      type: String,
+      default: 'sem descricao',
+    },
+    salario: {
+      type: [Number, String],
+      required: true,
+    },
+    modalidade: {
+      type: String,
+      required: true,
+    },
+    tipo: {
+      type: String,
+      required: true,
+    },
+    publicacao: {
+      type: String,
+      required: true,
+    },
+  },
 };
 </script>
-
-<style lang="scss" scoped></style>
