@@ -1,26 +1,32 @@
 <template>
   <div>
-    <Topo />
-    <Conteudo></Conteudo>
+    <alerta></alerta>
+    <vagas-favoritas></vagas-favoritas>
+    <topo-padrao @navegar="componente = $event" />
+    <conteudo v-if="visibilidade" :conteudo="componente"></conteudo>
   </div>
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld.vue';
-import Conteudo from './components/layouts/Conteudo.vue';
-import Topo from './components/layouts/Topo.vue';
+import Alerta from './components/comuns/Alerta.vue';
+import Conteudo from '@/components/layouts/Conteudo.vue';
+import TopoPadrao from '@/components/layouts/Topo.vue';
+import VagasFavoritas from './components/comuns/VagasFavoritas.vue';
+
 
 export default {
   name: 'App',
+  data: () => ({
+    visibilidade: true,
+    componente: 'ViewHome',
+  }),
   components: {
     Conteudo,
-    Topo,
+    TopoPadrao,
+    VagasFavoritas,
+    Alerta
   },
 };
 </script>
 
-<style scoped>
-h1 {
-  color: red;
-}
-</style>
+<style scoped></style>
