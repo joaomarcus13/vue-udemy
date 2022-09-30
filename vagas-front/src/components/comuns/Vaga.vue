@@ -1,11 +1,14 @@
 <template>
   <div class="card">
-    <div class="card-header bg-dark text-white">Título da vaga</div>
+    <div class="card-header bg-dark text-white">{{ titulo }}</div>
     <div class="card-body">
-      <p>Descricao truncada da vaga...</p>
-      <div class="card-footer">
-        <small class="text-muted">Salario: R$ 60.000</small>
-      </div>
+      <p>{{ descricao }}</p>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted"
+        >Salario: R$ {{ salario }} | Modalidade: {{ modalidade }} | Tipo: {{ tipo }} | Publicacao:
+        {{ new Date(publicacao).toLocaleDateString() }}</small
+      >
     </div>
   </div>
 </template>
@@ -13,8 +16,13 @@
 <script>
 export default {
   name: 'BaseVaga',
-  props: {},
+  props: {
+    titulo: String,
+    descricao: String,
+    salario: Number,
+    modalidade: String,
+    tipo: String,
+    publicacao: String,
+  },
 };
 </script>
-
-<style lang="scss" scoped></style>
