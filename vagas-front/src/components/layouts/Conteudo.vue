@@ -1,10 +1,10 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div>
-    <h1>{{ titulo }}</h1>
-    <button @click="atualizarComponente()">Atualizar</button>
-    <button @click="conteudo = 'home'">Home</button>
-    <button @click="conteudo = 'publicar-vaga'">Publicar Vaga</button>
+    <!-- <h1>{{ titulo }}</h1> -->
+    <!-- <button @click="atualizarComponente()">Atualizar</button> -->
+    <!-- <button @click="conteudo = 'home'">Home</button> -->
+    <!-- <button @click="conteudo = 'publicar-vaga'">Publicar Vaga</button> -->
     <!-- renderizar de modo dinâmico os componentes home e publicar-vaga -->
     <!--<home></home>-->
     <!--<publicar-vaga></publicar-vaga>-->
@@ -15,20 +15,19 @@
 </template>
 
 <script>
-import Home from '../views/Home.vue';
+import ViewHome from '../views/Home.vue';
 import PublicarVaga from '../views/PublicarVaga.vue';
 
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: 'Conteudo',
+  props: {
+    conteudo: String,
+  },
   components: {
-    Home,
+    ViewHome,
     PublicarVaga,
   },
-  data: () => ({
-    teste: 'O componente foi criado',
-    titulo: 'Componente Conteudo',
-    conteudo: 'home',
-  }),
+  data: () => ({}),
 };
 </script>
