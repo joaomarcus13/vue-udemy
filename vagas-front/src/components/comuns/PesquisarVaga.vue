@@ -7,6 +7,7 @@
           <label for="">Titulo da vaga</label>
           <input
             type="text"
+            v-model="titulo"
             class="form-control"
             placeholder="Pesquise por palavras chaves, por exemplo 'PHP, 'Pleno', 'Analista'"
           />
@@ -18,7 +19,13 @@
     </div>
     <div class="row">
       <div class="col">
-        <button class="btn btn-outline-dark mt-2" type="button">Buscar</button>
+        <button
+          class="btn btn-outline-dark mt-2"
+          type="button"
+          @click="pesquisar"
+        >
+          Buscar
+        </button>
       </div>
     </div>
   </div>
@@ -27,6 +34,22 @@
 <script>
 export default {
   name: 'PesquisarVaga',
+  inject: ['message'], //vinda de home
+  created() {
+    console.log(this.message); // injected value
+    console.log(this.$data);
+  },
+  data: () => ({
+    titulo: '',
+  }),
+  methods: {
+    pesquisar() {
+      console.log(this.titulo);
+      this.emitter.emit('filtrar', {
+        titulo: this.titulo,
+      });
+    },
+  },
 };
 </script>
 

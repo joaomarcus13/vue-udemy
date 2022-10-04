@@ -5,11 +5,22 @@
         <PesquisarVaga />
       </div>
     </div>
-    <div class="row mt-5" v-for="(vaga, index) in vagas" :key="index">
-      <div class="col">
-        <Vagas v-bind="vaga" />
-      </div>
-    </div>
+    <ListaVagas>
+      <template v-slot:titulo="slotProps">
+        <p>{{ slotProps.dadosTitulo.titulo }}</p>
+      </template>
+      <!-- <template v-slot:default="{ vagas }">
+        <div v-for="(vaga, index) in vagas" :key="index">
+          <h4>{{ vaga.titulo }}</h4>
+          <p>{{ vaga.descricao }}</p>
+          <hr />
+        </div>
+      </template> -->
+      <template v-slot:rodape="slotProps">
+        <p>{{ slotProps.dadosRodape.titulo }}</p>
+      </template>
+    </ListaVagas>
+
     <div class="row mt-5">
       <div class="col-4">
         <Indicador
@@ -42,24 +53,21 @@
 <script>
 import PesquisarVaga from '@/components/comuns/PesquisarVaga.vue';
 import Indicador from '@/components/comuns/Indicador.vue';
-import Vagas from '@/components/comuns/Vaga.vue';
+import ListaVagas from '@/components/comuns/ListaVagas.vue';
+
 export default {
   name: 'ViewHome',
-  components: { PesquisarVaga, Indicador, Vagas },
+  components: { PesquisarVaga, Indicador, ListaVagas },
   data: () => ({
     usuariosOnline: 10,
-    vagas: [],
   }),
   methods: {
     getUsuariosOnline() {
       this.usuariosOnline = Math.floor(Math.random() * 100);
     },
   },
-  created() {
-    setInterval(this.getUsuariosOnline, 1000);
-  },
-  activated() {
-    this.vagas = JSON.parse(localStorage.getItem('vagas'));
+  provide: {
+    message: 'hello!',
   },
 };
 </script>
